@@ -53,7 +53,7 @@ def Select_folder():
 
 
     #create excel
-    workbook = xlsxwriter.Workbook('Testscanbarcode.xlsx')
+    workbook = xlsxwriter.Workbook('pongratchada.xlsx')
     worksheet = workbook.add_worksheet("My sheet")
 
     print("scores",scores)

@@ -11,13 +11,32 @@ import os
 import shutil
 
 import xlsxwriter
+from tkinter import Entry
+from tkinter import Label
 
 root = Tk()
-root.title('Open Windows')
+root.title('Scan Barcode')
 root.resizable(False,False)
 root.geometry('300x150')
 
+# เพิ่ม Label สำหรับชื่อไฟล์ Excel
+excel_name_label = Label(root, text="Excel Name:")
+excel_name_label.pack()
+
+# เพิ่มคอมโพเนนท์ Entry สำหรับกรอกชื่อไฟล์ Excel
+file_name_entry = Entry(root)
+file_name_entry.pack(expand=True)
+
 def Select_folder():
+
+    # ดึงชื่อไฟล์ Excel ที่ผู้ใช้กรอก
+    excel_file_name = file_name_entry.get()
+    
+    # ตรวจสอบว่าผู้ใช้กรอกชื่อไฟล์หรือไม่
+    if not excel_file_name:
+        messagebox.showerror("Error", "Please enter a file name.")
+        return
+
     path=askdirectory(title='Select your folder')
     print('Path:',path + '/*')
 
@@ -47,13 +66,13 @@ def Select_folder():
                     # data_result = string_data[1:]
                     scores.append([name,string_data])                    
 
-        cv2.imshow("image", img)
-        cv2.waitKey(1)
-        cv2.destroyAllWindows()
+        # cv2.imshow("image", img)
+        # cv2.waitKey(1)
+        # cv2.destroyAllWindows()
 
 
     #create excel
-    workbook = xlsxwriter.Workbook('pongratchada.xlsx')
+    workbook = xlsxwriter.Workbook(f'{excel_file_name}.xlsx')
     worksheet = workbook.add_worksheet("My sheet")
 
     print("scores",scores)
@@ -67,10 +86,6 @@ def Select_folder():
         row += 1
 
     workbook.close()
-
-    
-
-
 
 open_button = ttk.Button(root,text='Select your folder' ,command=Select_folder)
 open_button.pack(expand=True)

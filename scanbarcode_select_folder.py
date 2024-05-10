@@ -11,13 +11,27 @@ import os
 import shutil
 
 import xlsxwriter
+from tkinter import Entry
 
 root = Tk()
 root.title('Open Windows')
 root.resizable(False,False)
 root.geometry('300x150')
 
+# เพิ่มคอมโพเนนท์ Entry สำหรับกรอกชื่อไฟล์ Excel
+file_name_entry = Entry(root)
+file_name_entry.pack(expand=True)
+
 def Select_folder():
+
+    # ดึงชื่อไฟล์ Excel ที่ผู้ใช้กรอก
+    excel_file_name = file_name_entry.get()
+    
+    # ตรวจสอบว่าผู้ใช้กรอกชื่อไฟล์หรือไม่
+    if not excel_file_name:
+        messagebox.showerror("Error", "Please enter a file name.")
+        return
+
     path=askdirectory(title='Select your folder')
     print('Path:',path + '/*')
 
@@ -53,7 +67,7 @@ def Select_folder():
 
 
     #create excel
-    workbook = xlsxwriter.Workbook('pongratchada.xlsx')
+    workbook = xlsxwriter.Workbook(f'{excel_file_name}.xlsx')
     worksheet = workbook.add_worksheet("My sheet")
 
     print("scores",scores)

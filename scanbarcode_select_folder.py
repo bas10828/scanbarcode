@@ -12,11 +12,16 @@ import shutil
 
 import xlsxwriter
 from tkinter import Entry
+from tkinter import Label
 
 root = Tk()
 root.title('Open Windows')
 root.resizable(False,False)
 root.geometry('300x150')
+
+# เพิ่ม Label สำหรับชื่อไฟล์ Excel
+excel_name_label = Label(root, text="Excel Name:")
+excel_name_label.pack()
 
 # เพิ่มคอมโพเนนท์ Entry สำหรับกรอกชื่อไฟล์ Excel
 file_name_entry = Entry(root)

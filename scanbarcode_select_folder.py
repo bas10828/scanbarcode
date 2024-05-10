@@ -15,7 +15,7 @@ from tkinter import Entry
 from tkinter import Label
 
 root = Tk()
-root.title('Open Windows')
+root.title('Scan Barcode')
 root.resizable(False,False)
 root.geometry('300x150')
 
@@ -66,9 +66,9 @@ def Select_folder():
                     # data_result = string_data[1:]
                     scores.append([name,string_data])                    
 
-        cv2.imshow("image", img)
-        cv2.waitKey(1)
-        cv2.destroyAllWindows()
+        # cv2.imshow("image", img)
+        # cv2.waitKey(1)
+        # cv2.destroyAllWindows()
 
 
     #create excel
@@ -86,10 +86,6 @@ def Select_folder():
         row += 1
 
     workbook.close()
-
-    
-
-
 
 open_button = ttk.Button(root,text='Select your folder' ,command=Select_folder)
 open_button.pack(expand=True)

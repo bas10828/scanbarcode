@@ -42,5 +42,5 @@ def BarcodeReader(image):
 
 if __name__ == "__main__":
 # Take the image from user
-	image="image3.jpg"
+	image="C:\\Users\\kanta\\Desktop\\Dev\\scanbarcode\\maesuay\\sw09-POE.jpg"
 	BarcodeReader(image)
